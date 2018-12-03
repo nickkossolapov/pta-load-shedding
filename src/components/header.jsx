@@ -10,8 +10,11 @@ export default function Header(props) {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem eventKey={1} href="http://www.tshwane.gov.za/sites/Departments/Public-works-and-infrastructure/Pages/Load-Shedding.aspx">
+          <NavItem eventKey={1} href="http://www.tshwane.gov.za/sites/Departments/Public-works-and-infrastructure/Pages/Load-Shedding.aspx" target="_blank">
             Official schedule
+          </NavItem>
+          <NavItem eventKey={1} href="http://www.tshwane.gov.za/sites/Departments/Public-works-and-infrastructure/Pages/Load-Shedding.aspx#suburblist" target="_blank">
+            Suburb list
           </NavItem>
         </Nav>
       </Navbar>
