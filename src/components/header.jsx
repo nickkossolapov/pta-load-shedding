@@ -6,7 +6,7 @@ export default function Header(props) {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#home">Pretoria Load Shedding</a>
+            <a href="/">Pretoria Load Shedding</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
