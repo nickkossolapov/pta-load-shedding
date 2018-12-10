@@ -29,24 +29,20 @@ export default class Body extends Component {
       });
   }
 
-  setStatus(status){
-    this.setState({
-      status
-    })
-  }
-
-  setGroup(group){
-    this.setGroup({
-      group
-    })
+  GetStateChangeHandler(stateKey, value){
+    return (value) => this.setState({
+      [stateKey]: value
+    });
   }
 
   render() {
     return (
-      <SearchBar
-        status={this.state.status}
-        onStatusChange={status => this.setStatus(status)}
-        onGroupChange={group => this.setGroup(group)}/>
+      <div>
+        <SearchBar
+          status={this.state.status}
+          onGroupChange={this.GetStateChangeHandler("group")}/>
+      </div>
+
     );
   }
 }
