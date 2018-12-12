@@ -5,6 +5,7 @@ import {Typeahead} from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import suburbs from '../data/suburb_data';
 import DropDown from './dropdown';
+import Row from 'react-bootstrap/es/Row';
 
 export default class SearchBar extends Component{
   constructor(props) {
@@ -24,7 +25,9 @@ export default class SearchBar extends Component{
 
   handleGroupChange(group){
     this.props.onGroupChange(group);
-    this.props.onSuburbChange(null);
+    if (this.state.selected[0] && group !== this.state.selected[0].group){
+      this.props.onSuburbChange(null);
+    }
   }
 
   static getDerivedStateFromProps(props, state){
@@ -35,22 +38,24 @@ export default class SearchBar extends Component{
 
   render(){
     return (
-      <Col md={8} mdOffset={2}>
-        <FormGroup>
-          <InputGroup>
-            <Typeahead
-              selected={this.state.selected}
-              options={suburbs}
-              onChange={selected => this.handleSuburbChange(selected)}
-              clearButton={true}/>
-            <InputGroup.Button className="input-group-append">
-              <DropDown onChange={group => this.handleGroupChange(group)}
-                group={this.props.group} type="group" size="16"/>
-              <DropDown onChange={this.props.onStageChange} stage={this.props.stage} type="stage" size="8"/>
-            </InputGroup.Button>
-          </InputGroup>
-        </FormGroup>
-      </Col>
+      <Row>
+        <Col md={8} mdOffset={2}>
+          <FormGroup>
+            <InputGroup>
+              <Typeahead
+                selected={this.state.selected}
+                options={suburbs}
+                onChange={selected => this.handleSuburbChange(selected)}
+                clearButton={true}/>
+              <InputGroup.Button className="input-group-append">
+                <DropDown onChange={group => this.handleGroupChange(group)}
+                  group={this.props.group} type="group" size="16"/>
+                <DropDown onChange={this.props.onStageChange} stage={this.props.stage} type="stage" size="8"/>
+              </InputGroup.Button>
+            </InputGroup>
+          </FormGroup>
+        </Col>
+      </Row>
     );
   }
 }

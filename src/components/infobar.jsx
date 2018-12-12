@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Label} from 'react-bootstrap';
+import {Col, Label, Row} from 'react-bootstrap';
 
 export default function InfoBar(props) {
   let headerText;
@@ -12,8 +12,8 @@ export default function InfoBar(props) {
   }
 
   return (
-    <div>
-      <Col md={3} mdOffset={5}>
+    <Row>
+      <Col className="text-center" md={5} mdOffset={3}>
         <h4>{headerText}</h4>
       </Col>
       <Col md={1}>
@@ -21,6 +21,6 @@ export default function InfoBar(props) {
           <Label bsStyle="info">Stage: {props.stage ? props.stage : "None"}</Label>
         </h4>
       </Col>
-    </div>
+    </Row>
   );
 }
