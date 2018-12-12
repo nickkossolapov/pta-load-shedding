@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Col, Row, Table} from 'react-bootstrap';
-import Moment from 'moment';
 
 import data from '../data/data';
 
@@ -27,15 +26,19 @@ export default class Schedule extends Component {
   getSplitScheduleData(){
     let {group, stage} = this.props;
 
-    let dayTimes = [...Array(DAYS_AHEAD)];
-    const loadSheddingData = this.data[stage][group];
+    let weekTimes = [...Array(DAYS_AHEAD)];
+    const loadSheddingData = this.data[group];
 
     for (let i = 0; i < DAYS_AHEAD; i++){
-      const times = loadSheddingData[(this.startDate+i).toString()];
-      dayTimes[i] = times ? times : [];
+      let dayTimes = [];
+      for (let j = parseInt(stage); j > 0; j--){
+        dayTimes.push(loadSheddingData[j][(this.startDate+i).toString()])
+      }
+
+      weekTimes[i] = dayTimes ? dayTimes.sort() : [];
     }
 
-    return dayTimes;
+    return weekTimes;
   }
 
   render() {
@@ -84,8 +87,7 @@ function Day(props){
   return (
     <td className="text-center col-md-1">
       {times.map((time, index) => {
-        let moment = Moment(time, 'H:mm');
-        return <p key={index}>{time + " - " + moment.add(2, 'hours').format('H:mm')}</p>
+        return <p key={index}>{time}</p>
       })}
     </td>
   );
