@@ -46,7 +46,8 @@ export default class SearchBar extends Component{
                 selected={this.state.selected}
                 options={suburbs}
                 onChange={selected => this.handleSuburbChange(selected)}
-                clearButton={true}/>
+                clearButton={true}
+                highlightOnlyResult={true}/>
               <InputGroup.Button className="input-group-append">
                 <DropDown onChange={group => this.handleGroupChange(group)}
                   group={this.props.group} type="group" size="16"/>

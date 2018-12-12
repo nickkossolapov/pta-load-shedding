@@ -9,7 +9,7 @@ export default function Header(props) {
           <a href="/">Pretoria Load Shedding</a>
         </Navbar.Brand>
       </Navbar.Header>
-      <Nav>
+      <Nav pullRight>
         <NavItem eventKey={1} href="http://www.tshwane.gov.za/sites/Departments/Public-works-and-infrastructure/Pages/Load-Shedding.aspx" target="_blank">
           Official schedule
         </NavItem>
