@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, FormGroup, Grid, InputGroup, Row} from 'react-bootstrap';
+import {Col, FormGroup, InputGroup} from 'react-bootstrap';
 import {Typeahead} from 'react-bootstrap-typeahead';
 
 import 'react-bootstrap-typeahead/css/Typeahead.css';
@@ -15,10 +15,16 @@ export default class SearchBar extends Component{
     }
   }
 
-  handleSuburbChange(selected){
-    this.setState({ selected: selected });
-    let selectedGroup = selected[0] ? selected[0]['group'] : null;
-    this.props.onGroupChange(selectedGroup);
+  handleSuburbChange([selected]){
+    this.setState({ selected : [selected] });
+    let { group, label } = selected;
+    this.props.onGroupChange(group);
+    this.props.onSuburbChange(label);
+  }
+
+  handleGroupChange(group){
+    this.props.onGroupChange(group);
+    this.props.onSuburbChange(null);
   }
 
   static getDerivedStateFromProps(props, state){
@@ -29,26 +35,22 @@ export default class SearchBar extends Component{
 
   render(){
     return (
-      <Grid>
-        <Row>
-          <Col md={8} mdOffset={2}>
-
-            <FormGroup>
-              <InputGroup>
-                <Typeahead
-                  selected={this.state.selected}
-                  options={suburbs}
-                  onChange={selected => this.handleSuburbChange(selected)}
-                  clearButton={true}/>
-                <InputGroup.Button className="input-group-append">
-                  <DropDown onChange={this.props.onGroupChange} group={this.props.group} type="group" size="16"/>
-                  <DropDown onChange={this.props.onStatusChange} status={this.props.status} type="status" size="8"/>
-                </InputGroup.Button>
-              </InputGroup>
-            </FormGroup>
-          </Col>
-        </Row>
-      </Grid>
+      <Col md={8} mdOffset={2}>
+        <FormGroup>
+          <InputGroup>
+            <Typeahead
+              selected={this.state.selected}
+              options={suburbs}
+              onChange={selected => this.handleSuburbChange(selected)}
+              clearButton={true}/>
+            <InputGroup.Button className="input-group-append">
+              <DropDown onChange={group => this.handleGroupChange(group)}
+                group={this.props.group} type="group" size="16"/>
+              <DropDown onChange={this.props.onStageChange} stage={this.props.stage} type="stage" size="8"/>
+            </InputGroup.Button>
+          </InputGroup>
+        </FormGroup>
+      </Col>
     );
   }
 }

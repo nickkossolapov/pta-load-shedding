@@ -1,27 +1,31 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import SearchBar from './searchbar';
+import {Grid, Row} from 'react-bootstrap';
 
-const STATUS_URL = 'https://ewn.co.za/assets/loadshedding/api/eskomstatus?';
+import SearchBar from './searchbar';
+import InfoBar from './infobar';
+
+const STAGE_URL = 'https://ewn.co.za/assets/loadshedding/api/eskomstatus?';
 
 export default class Body extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      status: null,
-      group: null
+      stage: null,
+      group: null,
+      suburb: null
     };
 
-    this.getStatus();
+    this.getStage();
   }
 
-  getStatus() {
-    axios.get(STATUS_URL)
+  getStage() {
+    axios.get(STAGE_URL)
       .then(response => {
         const status = response.data.slice(-1);
         if (!isNaN(status)){
-          this.setStatus(status);
+          this.setState({status});
         }
       })
       .catch(error => {
@@ -37,14 +41,22 @@ export default class Body extends Component {
 
   render() {
     return (
-      <div>
-        <SearchBar
-          status={this.state.status}
-          group={this.state.group}
-          onStatusChange={this.GetStateChangeHandler("status")}
-          onGroupChange={this.GetStateChangeHandler("group")}/>
-      </div>
-
+      <Grid>
+        <Row>
+          <SearchBar
+            stage={this.state.stage}
+            group={this.state.group}
+            onStageChange={this.GetStateChangeHandler("stage")}
+            onGroupChange={this.GetStateChangeHandler("group")}
+            onSuburbChange={this.GetStateChangeHandler("suburb")}/>
+        </Row>
+        <Row>
+          <InfoBar
+            stage={this.state.stage}
+            group={this.state.group}
+            suburb={this.state.suburb}/>
+        </Row>
+      </Grid>
     );
   }
 }

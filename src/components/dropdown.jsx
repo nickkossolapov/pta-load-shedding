@@ -23,7 +23,7 @@ export default class DropDown extends Component {
               key={item}
               eventKey={item+1}
               onSelect={(key) => this.props.onChange(key.toString())}
-              active={(item+1)==this.props[this.type] ? {} : undefined}>
+              active={(item+1).toString() === this.props[this.type]}>
                 {item+1}
             </MenuItem>
           )
