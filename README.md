@@ -17,6 +17,10 @@ npm install
 To start, run the start command.
 
 
+```
+npm run start
+```
+
 
 ## Built With
 
