@@ -8,7 +8,7 @@ A simple app that shows the load shedding time for the next 5 days in a selected
 
 ### Setup
 
-To build the React front-end, first install all the modules.
+First install all the modules.
 
 ```
 npm install
