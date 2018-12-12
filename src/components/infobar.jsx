@@ -18,7 +18,7 @@ export default function InfoBar(props) {
       </Col>
       <Col md={1}>
         <h4>
-          <Label bsStyle="info">Stage: {props.stage ? props.stage : "None"}</Label>
+          <Label bsStyle={props.stage ? "warning" : "info"}>Stage: {props.stage ? props.stage : "None"}</Label>
         </h4>
       </Col>
     </Row>
