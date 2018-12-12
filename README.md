@@ -24,8 +24,8 @@ npm run start
 
 ## Built With
 
-* [React](https://reactjs.org/) with [Redux](https://redux.js.org/)
-* [React-Bootstrap](https://react-bootstrap.github.io/
+* [React](https://reactjs.org/)
+* [React-Bootstrap](https://react-bootstrap.github.io/)
 
 ## License
 
