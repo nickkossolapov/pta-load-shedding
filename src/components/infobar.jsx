@@ -14,12 +14,12 @@ export default function InfoBar(props) {
   return (
     <Row className="info-bar">
       <Col className="text-center" md={5} mdOffset={3}>
-        <h4>{headerText}</h4>
+        <h3>{headerText}</h3>
       </Col>
       <Col md={1}>
-        <h4>
+        <h3>
           <Label bsStyle={props.stage ? "warning" : "info"}>Stage: {props.stage ? props.stage : "None"}</Label>
-        </h4>
+        </h3>
       </Col>
     </Row>
   );
