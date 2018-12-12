@@ -5,6 +5,7 @@ import {Grid} from 'react-bootstrap';
 import SearchBar from './searchbar';
 import InfoBar from './infobar';
 import Schedule from './schedule';
+import './globals.css';
 
 const STAGE_URL = 'https://ewn.co.za/assets/loadshedding/api/eskomstatus?';
 

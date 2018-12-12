@@ -38,7 +38,7 @@ export default class SearchBar extends Component{
 
   render(){
     return (
-      <Row>
+      <Row className="search-bar">
         <Col md={8} mdOffset={2}>
           <FormGroup>
             <InputGroup>

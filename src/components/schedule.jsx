@@ -1,53 +1,67 @@
 import React, {Component} from 'react';
 import {Col, Row, Table} from 'react-bootstrap';
+import Moment from 'moment';
 
 import data from '../data/data';
+
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const DAYS_AHEAD = 5;
 
 export default class Schedule extends Component {
   constructor(props){
     super(props);
     this.data = data;
+
+    const date = new Date();
+    const startDay = date.getDay();
+
+    this.startDate = date.getDate();
+    this.daysAheadNames = [];
+
+    for (let i = 0; i < DAYS_AHEAD; i++){
+      let dayIndex = (startDay + i)%7;
+      this.daysAheadNames.push(DAYS[dayIndex]);
+    }
   }
 
   getSplitScheduleData(){
     let {group, stage} = this.props;
-    const date = new Date();
-    const dayOfWeek = date.getDay();
-    const dayOfMonth = date.getDate();
-    const startDate = dayOfMonth - dayOfWeek;
 
-    let loadSheddingTimes = [];
+    let dayTimes = [...Array(DAYS_AHEAD)];
     const loadSheddingData = this.data[stage][group];
 
-    for (let day = startDate; day > startDate + 7; day++){
-      loadSheddingTimes.push(loadSheddingData[day.toString()]);
+    for (let i = 0; i < DAYS_AHEAD; i++){
+      const times = loadSheddingData[(this.startDate+i).toString()];
+      dayTimes[i] = times ? times : [];
     }
 
-    return loadSheddingTimes;
+    return dayTimes;
   }
 
   render() {
-    return(
-      <Row>
-        <Col md={8} mdOffset={2}>
-          <Table responsive>
-            <ScheduleTableHead />
-            <ScheduleTableBody dayTimes={this.getSplitScheduleData()}/>
-          </Table>
-        </Col>
-      </Row>
-    );
+    if (this.props.group && this.props.stage){
+      return(
+        <Row className="schedule">
+          <Col md={10} mdOffset={1}>
+            <Table responsive>
+              <ScheduleTableHead daysAheadNames={this.daysAheadNames}/>
+              <ScheduleTableBody dayTimes={this.getSplitScheduleData()}/>
+            </Table>
+          </Col>
+        </Row>
+      );
+    } else {
+      return (null);
+    }
   }
 }
 
-function ScheduleTableHead(){
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
+function ScheduleTableHead({daysAheadNames}){
   return (
     <thead>
       <tr>
-        {days.map(day => {
-          return <th key={day}>{day}</th>
+        {daysAheadNames.map(day => {
+          return <th className="text-center col-md-1" key={day}>{day}</th>
         })}
       </tr>
     </thead>
@@ -59,12 +73,20 @@ function ScheduleTableBody(props){
   return (
     <tbody>
       <tr>
-        {dayTimes.map(times => {
-          return times.map(time => {
-            return <p>{time}</p>
-          })
-        })}
+        {dayTimes.map((times, index) => {return <Day key={index} times={times}/>})}
       </tr>
     </tbody>
   )
+}
+
+function Day(props){
+  let {times} = props;
+  return (
+    <td className="text-center col-md-1">
+      {times.map((time, index) => {
+        let moment = Moment(time, 'H:mm');
+        return <p key={index}>{time + " - " + moment.add(2, 'hours').format('H:mm')}</p>
+      })}
+    </td>
+  );
 }

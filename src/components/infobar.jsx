@@ -12,7 +12,7 @@ export default function InfoBar(props) {
   }
 
   return (
-    <Row>
+    <Row className="info-bar">
       <Col className="text-center" md={5} mdOffset={3}>
         <h4>{headerText}</h4>
       </Col>
