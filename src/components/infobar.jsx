@@ -6,7 +6,7 @@ export default function InfoBar(props) {
   if (props.suburb){
     headerText = `${props.suburb} (Group ${props.group})`;
   } else if (props.group) {
-    headerText = `Group: ${props.group}`
+    headerText = `Group ${props.group}`
   } else {
     headerText = "Nothing selected";
   }
