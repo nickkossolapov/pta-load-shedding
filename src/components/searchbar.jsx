@@ -15,9 +15,9 @@ export default class SearchBar extends Component{
     }
   }
 
-  handleSuburbChange([selected]){
-    this.setState({ selected : [selected] });
-    let { group, label } = selected;
+  handleSuburbChange(selected){
+    this.setState({ selected : selected });
+    let [{ group, label }] = selected[0] ? selected : [{group: null, label: null}];
     this.props.onGroupChange(group);
     this.props.onSuburbChange(label);
   }
