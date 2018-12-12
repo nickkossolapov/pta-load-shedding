@@ -4,7 +4,6 @@ A simple app that shows the load shedding time for the next 5 days in a selected
 
 ### Dependencies
 
-* Python 3.6+
 * npm 5.6+
 
 ### Setup
