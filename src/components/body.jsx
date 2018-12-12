@@ -10,7 +10,7 @@ export default class Body extends Component {
 
     this.state = {
       status: null,
-      group: 1
+      group: null
     };
 
     this.getStatus();
@@ -40,6 +40,8 @@ export default class Body extends Component {
       <div>
         <SearchBar
           status={this.state.status}
+          group={this.state.group}
+          onStatusChange={this.GetStateChangeHandler("status")}
           onGroupChange={this.GetStateChangeHandler("group")}/>
       </div>
 
