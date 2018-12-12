@@ -7,7 +7,7 @@ import suburbs from '../data/suburb_data';
 import DropDown from './dropdown';
 import Row from 'react-bootstrap/es/Row';
 
-export default class SearchBar extends Component{
+export default class SearchBar extends Component {
   constructor(props) {
     super(props);
 
@@ -16,27 +16,27 @@ export default class SearchBar extends Component{
     }
   }
 
-  handleSuburbChange(selected){
+  handleSuburbChange(selected) {
     this.setState({ selected : selected });
     let [{ group, label }] = selected[0] ? selected : [{group: null, label: null}];
     this.props.onGroupChange(group);
     this.props.onSuburbChange(label);
   }
 
-  handleGroupChange(group){
+  handleGroupChange(group) {
     this.props.onGroupChange(group);
     if (this.state.selected[0] && group !== this.state.selected[0].group){
       this.props.onSuburbChange(null);
     }
   }
 
-  static getDerivedStateFromProps(props, state){
+  static getDerivedStateFromProps(props, state) {
     return (state.selected[0] && state.selected[0].group !== props.group)
       ? { selected: [] }
       : null;
   }
 
-  render(){
+  render() {
     return (
       <Row className="search-bar">
         <Col md={8} mdOffset={2}>

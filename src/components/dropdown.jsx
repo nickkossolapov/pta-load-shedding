@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import {DropdownButton, MenuItem} from 'react-bootstrap';
 
 export default class DropDown extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.type = props.type;
     this.typeArray = [...Array(parseInt(props.size)).keys()];
-    this.typeName = this.CapitalizeFirstLetter(props.type);
+    this.typeName = this.capitalizeFirstLetter(props.type);
   }
 
-  CapitalizeFirstLetter(string) {
+  capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 

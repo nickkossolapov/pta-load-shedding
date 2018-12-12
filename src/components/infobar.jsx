@@ -3,7 +3,7 @@ import {Col, Label, Row} from 'react-bootstrap';
 
 export default function InfoBar(props) {
   let headerText;
-  if (props.suburb){
+  if (props.suburb) {
     headerText = `${props.suburb} (Group ${props.group})`;
   } else if (props.group) {
     headerText = `Group ${props.group}`

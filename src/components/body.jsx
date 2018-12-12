@@ -35,7 +35,7 @@ export default class Body extends Component {
       });
   }
 
-  getStateChangeHandler(stateKey, value){
+  getStateChangeHandler(stateKey, value) {
     return (value) => this.setState({
       [stateKey]: value
     });

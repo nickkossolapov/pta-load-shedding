@@ -7,7 +7,7 @@ const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
 const DAYS_AHEAD = 5;
 
 export default class Schedule extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.data = data;
 
@@ -17,21 +17,21 @@ export default class Schedule extends Component {
     this.startDate = date.getDate();
     this.daysAheadNames = [];
 
-    for (let i = 0; i < DAYS_AHEAD; i++){
+    for (let i = 0; i < DAYS_AHEAD; i++) {
       let dayIndex = (startDay + i)%7;
       this.daysAheadNames.push(DAYS[dayIndex]);
     }
   }
 
-  getSplitScheduleData(){
+  getSplitScheduleData() {
     let {group, stage} = this.props;
 
     let weekTimes = [...Array(DAYS_AHEAD)];
     const loadSheddingData = this.data[group];
 
-    for (let i = 0; i < DAYS_AHEAD; i++){
+    for (let i = 0; i < DAYS_AHEAD; i++) {
       let dayTimes = [];
-      for (let j = parseInt(stage); j > 0; j--){
+      for (let j = parseInt(stage); j > 0; j--) {
         dayTimes.push(loadSheddingData[j][(this.startDate+i).toString()])
       }
 
@@ -43,7 +43,7 @@ export default class Schedule extends Component {
 
   render() {
     if (this.props.group && this.props.stage){
-      return(
+      return (
         <Row className="schedule">
           <Col md={10} mdOffset={1}>
             <Table responsive>
