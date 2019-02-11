@@ -19,7 +19,8 @@ export default class Schedule extends Component {
 
     for (let i = 0; i < DAYS_AHEAD; i++) {
       let dayIndex = (startDay + i)%7;
-      this.daysAheadNames.push(DAYS[dayIndex]);
+      let dateString = `${date.getDate() + i}/${date.getMonth()}`;
+      this.daysAheadNames.push({day: DAYS[dayIndex], dateString});
     }
   }
 
@@ -64,7 +65,7 @@ function ScheduleTableHead({daysAheadNames}){
     <thead>
       <tr>
         {daysAheadNames.map(day => {
-          return <th className="text-center col-md-1" key={day}>{day}</th>
+          return <th className="text-center col-md-1" key={day.day}>{day.day} {day.dateString}</th>
         })}
       </tr>
     </thead>
