@@ -19,7 +19,7 @@ export default class Schedule extends Component {
 
     for (let i = 0; i < DAYS_AHEAD; i++) {
       let dayIndex = (startDay + i)%7;
-      let dateString = `${date.getDate() + i}/${date.getMonth()}`;
+      let dateString = `${date.getDate() + i}/${date.getMonth() + 1}`;
       this.daysAheadNames.push({day: DAYS[dayIndex], dateString});
     }
   }
