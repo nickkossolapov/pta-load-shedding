@@ -2,6 +2,7 @@
   "name": "pta-load-shedding",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://www.pta-load-shedding.xyz",
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.6.3",
@@ -29,6 +30,5 @@
   ],
   "devDependencies": {
     "gh-pages": "^2.0.1"
-  },
-  "homepage": "https://nickkossolapov.github.io/pta-load-shedding"
+  }
 }
