@@ -25,9 +25,9 @@ export default class Body extends Component {
   getStage() {
     axios.get(STAGE_URL)
       .then(response => {
-        const status = response.data.slice(-1);
-        if (!isNaN(status)){
-          this.setState({status});
+        const stage = response.data.slice(-1);
+        if (!isNaN(stage)){
+          this.setState({stage});
         }
       })
       .catch(error => {
