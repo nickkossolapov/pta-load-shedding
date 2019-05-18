@@ -1,6 +1,6 @@
 # pta-load-shedding
 
-A simple app that shows the load shedding time for the next 5 days in a selected suburb.
+A simple app that shows the load shedding time for the next 5 days in a selected suburb in Pretoria.
 
 ### Dependencies
 
